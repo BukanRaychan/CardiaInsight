@@ -1,0 +1,45 @@
+.result-highlight {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.red-text {
+    color: red;
+}
+
+.green-text {
+    color: green;
+}
+
+.user-info {
+    margin-bottom: 20px;
+}
+
+.user-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stat-item {
+    margin-bottom: 10px;
+}
+
+.blood-pressure-values p {
+    margin: 0;
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+.back-button {
+    background-color: #4caf50; /* Custom green */
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    cursor: pointer;
+}

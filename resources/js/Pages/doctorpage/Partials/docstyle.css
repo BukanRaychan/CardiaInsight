@@ -1,0 +1,104 @@
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e0f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #428c97;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logout-button {
+    background-color: #d9d9d9;
+    color: #428c97;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.logout-button:hover {
+    background-color: #191919;
+    color: #d9d9d9;
+}
+
+.container {
+    padding: 20px;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns */
+    gap: 20px;
+}
+
+.patient-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.2s;
+    margin-bottom: 20px;
+}
+
+.patient-card:hover {
+    transform: translateY(-5px);
+}
+
+.patient-card h3 {
+    margin-top: 0;
+}
+
+.patient-card p {
+    color: #757575;
+}
+
+.go-to-result-button {
+    background-color: #428c97; /* Initial color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.5s;
+}
+
+.go-to-result-button:hover {
+    background-color: #005a4f; /* Hover color */
+    transform: translateY(2px); /* Slight lift on hover */
+}
+
+/* .doctor-select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fafafa;
+}
+
+.doctor-select:focus {
+    border-color: #00796b;
+    outline: none;
+} */
+
+/* .result-highlight {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.red-text {
+    color: red;
+}
+
+.green-text {
+    color: green;
+} */
