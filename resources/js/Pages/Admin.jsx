@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '@/../css/docstyle.css'; // Adjust the path based on your directory structure
+import '@/Pages/doctorpage/Partials/docstyle.css'; // Adjust the path based on your directory structure
 
 const patients = [
     { id: 1, name: 'John Doe', age: 30, PKVStatus: 'Yes' },

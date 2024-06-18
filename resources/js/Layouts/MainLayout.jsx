@@ -48,6 +48,8 @@ import Footer from "@/Components/Footer";
 import heart from "@/assets/Heart.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Head } from '@inertiajs/react'
+import logo from '@/assets/logo.png'
 
 function MainLayout({ children }) {
     const notifySuccess = (message) => toast.success(message);
@@ -66,6 +68,13 @@ function MainLayout({ children }) {
                 draggable
                 pauseOnHover
             />
+
+            
+
+            <Head>
+                <title>Cardia Insight</title>
+                <link rel="icon" href={logo} />
+            </Head>
 
             <Navbar />
             <div className="grid place-items-center">

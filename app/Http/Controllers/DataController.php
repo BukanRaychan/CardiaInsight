@@ -172,7 +172,9 @@ class DataController extends Controller
                 'active' => $physicalActive,
             ];
 
+            // $response = Http::asForm()->post('https://2236-118-99-87-249.ngrok-free.app/get-prediction', $dataForAi);
             $response = Http::asForm()->post('http://127.0.0.1:5000/get-prediction', $dataForAi);
+
 
             if ($response->successful()) {
                 $result = $response->json();

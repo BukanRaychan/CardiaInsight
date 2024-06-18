@@ -396,14 +396,15 @@ function HomePage({ data }) {
                 },
                 body: JSON.stringify(formData),
             });
+            // console.log(response);
             if (response.ok) {
                 const data = await response.json();
                 console.log("Forms submitted successfully : ", data);
                 toast.success("Forms submitted successfully!");
                 // Optionally, redirect or show success message
             } else {
-                console.error("Forms submission failed");
-                toast.error("Forms submission failed");
+                console.error("Forms submission failed", response);
+            //     toast.error("Forms submission failed");
             }
         } catch (error) {
             console.error("Error submitting forms: ", error);
