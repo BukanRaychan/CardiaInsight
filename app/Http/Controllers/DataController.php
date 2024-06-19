@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Models\Result;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
@@ -172,14 +174,16 @@ class DataController extends Controller
                 'active' => $physicalActive,
             ];
 
-            // $response = Http::asForm()->post('https://2236-118-99-87-249.ngrok-free.app/get-prediction', $dataForAi);
-            $response = Http::asForm()->post('http://127.0.0.1:5000/get-prediction', $dataForAi);
+            $client = new Client();
+            $response = $client->post('http://127.0.0.1:5000/get-prediction', [
+                'form_params' => $dataForAi,
+            ]);
 
+            $result = json_decode($response->getBody(), true);
 
-            if ($response->successful()) {
-                $result = $response->json();
+            if ($response->getStatusCode() == 200) {
                 $prediction = $result['result'];
-                // return $result;
+
                 $data = [
                     'user_id' => $user->id,
                     'cholesterol_level' => $cholesterolLevel,
@@ -190,14 +194,17 @@ class DataController extends Controller
                     'height' => $height,
                     'is_smoking' => $smoke,
                     'is_exercising' => $physicalActive,
-                    'prediction' => $prediction
+                    'prediction' => $prediction,
                 ];
+
                 Result::create($data);
                 return response()->json($data);
             } else {
-                return response()->json(['error' => 'Request failed'], 500);
+                Log::error('External API request failed', ['response' => $response->getBody()->getContents()]);
+                return response()->json(['error' => 'External API request failed'], 500);
             }
         } catch (\Exception $e) {
+            Log::error('Server error', ['exception' => $e]);
             return response()->json(['error' => 'Server error: ' . $e->getMessage()], 500);
         }
     }
