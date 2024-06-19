@@ -174,16 +174,12 @@ class DataController extends Controller
                 'active' => $physicalActive,
             ];
 
-            $client = new Client();
-            $response = $client->post('http://127.0.0.1:5000/get-prediction', [
-                'form_params' => $dataForAi,
-            ]);
+            $response = Http::withOptions(['verify' => false])->asForm()->post(env('ML_APP_URL').'/get-prediction', $dataForAi);
 
-            $result = json_decode($response->getBody(), true);
-
-            if ($response->getStatusCode() == 200) {
+            if ($response->successful()) {
+                $result = $response->json();
                 $prediction = $result['result'];
-
+                // return $result;
                 $data = [
                     'user_id' => $user->id,
                     'cholesterol_level' => $cholesterolLevel,
@@ -194,17 +190,14 @@ class DataController extends Controller
                     'height' => $height,
                     'is_smoking' => $smoke,
                     'is_exercising' => $physicalActive,
-                    'prediction' => $prediction,
+                    'prediction' => $prediction
                 ];
-
                 Result::create($data);
                 return response()->json($data);
             } else {
-                Log::error('External API request failed', ['response' => $response->getBody()->getContents()]);
-                return response()->json(['error' => 'External API request failed'], 500);
+                return response()->json(['error' => 'Request failed'], 500);
             }
         } catch (\Exception $e) {
-            Log::error('Server error', ['exception' => $e]);
             return response()->json(['error' => 'Server error: ' . $e->getMessage()], 500);
         }
     }
