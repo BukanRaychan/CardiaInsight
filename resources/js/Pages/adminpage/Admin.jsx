@@ -23,12 +23,12 @@ const handleLogout = async () => {
 };
 
 const App = ({ patients }) => {
+    console.log(patients);
     const [assignedDoctors, setAssignedDoctors] = useState({});
     const [doctors, setDoctors] = useState([]);
     const [selectedDoctor, setSelectedDoctor] = useState("");
 
     useEffect(() => {
-        // Memuat daftar dokter dari backend saat komponen dimuat
         fetchDoctors();
     }, []);
 

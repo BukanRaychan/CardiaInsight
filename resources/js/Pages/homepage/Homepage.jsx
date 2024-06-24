@@ -400,6 +400,7 @@ function HomePage({ data }) {
                 const data = await response.json();
                 console.log("Forms submitted successfully : ", data);
                 toast.success("Forms submitted successfully!");
+                window.location.href = "/result";
                 // Optionally, redirect or show success message
             } else {
                 console.error("Forms submission failed");
