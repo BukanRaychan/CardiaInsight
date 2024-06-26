@@ -24,8 +24,8 @@ def train_model():
         jb.dump(clf, joblib_file)
 
         return f'Model saved to {joblib_file}'
-    except:
-        return f'Failed to make the train model'
+    except Exception as e:
+        return f'Failed to make the train model, error: {e}'
     
     
 @app.route('/get-prediction', methods=['POST'])
