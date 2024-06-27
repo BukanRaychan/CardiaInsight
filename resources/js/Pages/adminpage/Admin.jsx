@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "@/Pages/doctorpage/Partials/docstyle.css"; // Sesuaikan dengan struktur direktori Anda
+import "@/Pages/doctorpage/Partials/docstyle.css";
 
 const handleLogout = async () => {
     const response = await fetch(route("logout"), {
@@ -23,12 +23,12 @@ const handleLogout = async () => {
 };
 
 const App = ({ patients }) => {
+    console.log(patients);
     const [assignedDoctors, setAssignedDoctors] = useState({});
     const [doctors, setDoctors] = useState([]);
     const [selectedDoctor, setSelectedDoctor] = useState("");
 
     useEffect(() => {
-        // Memuat daftar dokter dari backend saat komponen dimuat
         fetchDoctors();
     }, []);
 
@@ -53,8 +53,6 @@ const App = ({ patients }) => {
                     ...prevState,
                     [patientId]: selectedDoctor,
                 }));
-
-                // Kirim permintaan ke backend untuk menetapkan dokter
                 axios
                     .post(`/admin/assign-doctor/${patientId}`, {
                         doctorId: selectedDoctor,
