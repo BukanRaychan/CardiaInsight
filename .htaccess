@@ -1,12 +1,4 @@
-# RewriteEngine on
-# RewriteCond %{REQUEST_FILENAME} !-f
-# RewriteCond %{REQUEST_FILENAME} !-d
-# RewriteRule . /index.html [L]
-
+<IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR]
-RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
-RewriteRule ^ - [L]
-
-# Fallback all other routes to index.html
-RewriteRule . /index.html [L]
+RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
